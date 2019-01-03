@@ -31,20 +31,20 @@ public:
 
     Response Process(const Request &request) {
         // write your code here
-        int t;
-        int b;
+        int top;
+        int bottom;
         
 		if (finish_time_.size()!=0){
 
 			while (!finish_time_.empty()){
-				t=finish_time_.front();
-				if (t<=request.arrival_time)finish_time_.pop();
+				top=finish_time_.front();
+				if (top<=request.arrival_time)finish_time_.pop();
 				else break;
 			}
 			if (finish_time_.size()<size_ && finish_time_.size()!=0){
-				b=finish_time_.back();
-				finish_time_.push(b+request.process_time);
-				return Response(false,b);
+				bottom=finish_time_.back();
+				finish_time_.push(bottom+request.process_time);
+				return Response(false,bottom);
 			}
 		}if (finish_time_.empty()){
         	finish_time_.push(request.arrival_time+request.process_time);
